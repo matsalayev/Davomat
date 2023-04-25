@@ -23,8 +23,12 @@ namespace Davomat
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            showSubjects();
+        }
+        void showSubjects()
+        {
             conn.Open();
-            sql = @"select nomi from fanlar";
+            sql = $@"select f.nomi from dars_jadvali as d inner join fanlar as f on f.id = d.fan_id where d.hafta_kuni = {(int)dateTimePicker1.Value.DayOfWeek} and d.guruh = {int.Parse(comboBox1.SelectedItem.ToString().Replace(" ", "").Split("-")[0])};";
             cmd = new NpgsqlCommand(sql, conn);
             data = new DataTable();
             data.Load(cmd.ExecuteReader());
@@ -43,7 +47,6 @@ namespace Davomat
             students.Clear();
             foreach (DataRow row in data.Rows) students.Add(row[0].ToString());
         }
-
         void showStudents()
         {
             conn.Open();
@@ -126,7 +129,6 @@ namespace Davomat
                         conn.Close();
                     }
                 }
-
             }
             catch
             {
@@ -142,7 +144,10 @@ namespace Davomat
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            if (comboBox2.SelectedIndex != -1) showStudents();
+            comboBox2.Items.Clear();
+            comboBox2.Text = " Fanni tanlang";
+            pnlStudents.Controls.Clear();
+            showSubjects();
         }
     }
 }
