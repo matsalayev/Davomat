@@ -1,24 +1,24 @@
-//using Npgsql;
-//using System.Data;
+using Npgsql;
+using System.Data;
 
 using Microsoft.Win32.SafeHandles;
+using System.Data.Common;
 
 namespace Davomat
 {
     public partial class Form1 : Form
     {
-        //private string connectionString = String.Format("Server = localhost; Port=5432; User Id = postgres; Password = matsalayev; Database = kidt;");
-        //private NpgsqlConnection conn;
-        //private string sql;
-        //private NpgsqlCommand cmd;
-        //private DataTable data;
+        private NpgsqlConnection conn = new NpgsqlConnection(
+            "Server = localhost; Port=5432; User Id = postgres; Password = matsalayev; Database = kidt;");
+        private string sql;
+        private NpgsqlCommand cmd;
+        private DataTable data;
         CheckBox[] davomat;
+        List<string> students = new List<string>();
         public Form1()
         {
             InitializeComponent();
-            davomat = new CheckBox[25];
             showStudents();
-
         }
         private void btnInfo_Click(object sender, EventArgs e)
         {
@@ -29,13 +29,44 @@ namespace Davomat
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            try
+            {
+                conn.Open();
+                sql = @"select nomi from fanlar";
+                cmd = new NpgsqlCommand(sql, conn);
+                data = new DataTable();
+                data.Load(cmd.ExecuteReader());
+                conn.Close();
+                comboBox2.Items.Clear();
+                foreach (DataRow row in data.Rows)
+                {
+                    comboBox2.Items.Add(row[0].ToString());
+                }
+                conn.Open();
+                sql = @"select fio from talabalar where guruh = " + int.Parse(comboBox1.SelectedItem.ToString().Split("-")[0]);
+                cmd = new NpgsqlCommand(sql, conn);
+                data = new DataTable();
+                data.Load(cmd.ExecuteReader());
+                conn.Close();
+                students.Clear();
+                foreach (DataRow row in data.Rows)
+                {
+                    students.Add(row[0].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         void showStudents()
         {
+
             pnlStudents.Controls.Clear();
             int soni = 0;
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < students.Count; i++)
             {
                 Panel panel = new Panel();
                 panel.Size = new Size(1156, 35);
@@ -49,7 +80,7 @@ namespace Davomat
                 label.Font = new Font("Segoe UI", 10.8F);
                 label.Location = new Point(10, 6);
                 label.Size = new Size(261, 25);
-                label.Text = (i + 1) + ". Polonkasov polonkas";
+                label.Text = (i + 1) + ". " + students[i];
                 panel.Controls.Add(label);
                 davomat[i] = new CheckBox();
                 davomat[i].Anchor = AnchorStyles.Right;
@@ -60,7 +91,6 @@ namespace Davomat
                 pnlStudents.Controls.Add(panel);
                 soni++;
             }
-            lblSon.Text = soni.ToString() + " ta";
         }
 
         private void checkBox_CheckedChanged(object sender, EventArgs e)
@@ -71,6 +101,19 @@ namespace Davomat
                 if (!temp.Checked) raqam++;
             }
             lblSon.Text = raqam + " ta";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            davomat = new CheckBox[students.Count];
+            lblSon.Text = students.Count.ToString() + " ta";
+            showStudents();
         }
     }
 }

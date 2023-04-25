@@ -128,6 +128,7 @@
             comboBox2.Size = new Size(1153, 33);
             comboBox2.TabIndex = 2;
             comboBox2.Text = "  Fanni tanlang";
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // panel2
             // 
@@ -164,20 +165,21 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.Top;
-            button1.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(881, 5);
+            button1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Location = new Point(838, 3);
             button1.Name = "button1";
             button1.Size = new Size(154, 41);
             button1.TabIndex = 3;
             button1.Text = "Saqlash";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // lblSon
             // 
             lblSon.Anchor = AnchorStyles.Top;
             lblSon.AutoSize = true;
             lblSon.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            lblSon.Location = new Point(290, 6);
+            lblSon.Location = new Point(290, 11);
             lblSon.Name = "lblSon";
             lblSon.Size = new Size(44, 25);
             lblSon.TabIndex = 2;
@@ -188,7 +190,7 @@
             label5.Anchor = AnchorStyles.Top;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(218, 6);
+            label5.Location = new Point(218, 11);
             label5.Name = "label5";
             label5.Size = new Size(66, 25);
             label5.TabIndex = 1;
@@ -210,11 +212,11 @@
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(856, 6);
+            label4.Location = new Point(841, 6);
             label4.Name = "label4";
-            label4.Size = new Size(89, 25);
+            label4.Size = new Size(145, 25);
             label4.TabIndex = 1;
-            label4.Text = "Davomat";
+            label4.Text = "Davomat (yo‘q)";
             // 
             // label3
             // 
