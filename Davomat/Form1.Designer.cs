@@ -106,13 +106,11 @@
             // comboBox1
             // 
             comboBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            comboBox1.FlatStyle = FlatStyle.System;
             comboBox1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "211-KIDT", "212-KIDT" });
+            comboBox1.Items.AddRange(new object[] { " 211-KIDT", " 212-KIDT" });
             comboBox1.Location = new Point(31, 98);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(859, 33);
+            comboBox1.Size = new Size(945, 33);
             comboBox1.TabIndex = 1;
             comboBox1.Text = "  Guruxni tanlang";
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
@@ -144,7 +142,6 @@
             // 
             // pnlStudents
             // 
-            pnlStudents.AutoScroll = true;
             pnlStudents.Dock = DockStyle.Fill;
             pnlStudents.Location = new Point(0, 39);
             pnlStudents.Name = "pnlStudents";
@@ -166,7 +163,7 @@
             // 
             button1.Anchor = AnchorStyles.Top;
             button1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(838, 3);
+            button1.Location = new Point(838, 5);
             button1.Name = "button1";
             button1.Size = new Size(154, 41);
             button1.TabIndex = 3;
@@ -232,14 +229,17 @@
             // 
             dateTimePicker1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             dateTimePicker1.CalendarFont = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dateTimePicker1.CalendarTitleBackColor = Color.LightBlue;
             dateTimePicker1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker1.Location = new Point(896, 99);
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.Location = new Point(982, 99);
             dateTimePicker1.MaxDate = new DateTime(2026, 12, 31, 0, 0, 0, 0);
             dateTimePicker1.MinDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(288, 31);
+            dateTimePicker1.Size = new Size(202, 31);
             dateTimePicker1.TabIndex = 4;
             dateTimePicker1.Value = new DateTime(2023, 4, 25, 0, 0, 0, 0);
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // Form1
             // 

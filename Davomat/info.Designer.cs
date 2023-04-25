@@ -53,6 +53,7 @@
             // 
             button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
             button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             button1.Location = new Point(221, 344);
             button1.Name = "button1";
             button1.Size = new Size(94, 33);
@@ -64,9 +65,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(0, 272);
+            label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(12, 272);
             label1.Name = "label1";
-            label1.Size = new Size(545, 44);
+            label1.Size = new Size(517, 46);
             label1.TabIndex = 1;
             label1.Text = "Ta’lim muassasasida talabalar davomatini monitoring qilish tizimi.\r\nUrganch davlat universiteti 211-212 KIDT guruxi talabalari misolida.";
             label1.TextAlign = ContentAlignment.MiddleCenter;
