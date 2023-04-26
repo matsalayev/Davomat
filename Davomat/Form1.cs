@@ -1,6 +1,5 @@
 using Npgsql;
 using System.Data;
-
 namespace Davomat
 {
     public partial class Form1 : Form
@@ -27,25 +26,25 @@ namespace Davomat
         }
         void showSubjects()
         {
-            conn.Open();
-            sql = $@"select f.nomi from dars_jadvali as d inner join fanlar as f on f.id = d.fan_id where d.hafta_kuni = {(int)dateTimePicker1.Value.DayOfWeek} and d.guruh = {int.Parse(comboBox1.SelectedItem.ToString().Replace(" ", "").Split("-")[0])};";
-            cmd = new NpgsqlCommand(sql, conn);
-            data = new DataTable();
-            data.Load(cmd.ExecuteReader());
-            conn.Close();
-            comboBox2.Items.Clear();
-            foreach (DataRow row in data.Rows)
+            if (comboBox1.SelectedIndex != -1)
             {
-                comboBox2.Items.Add(" " + row[0].ToString());
+                conn.Open();
+                sql = $@"select f.nomi from dars_jadvali as d inner join fanlar as f on f.id = d.fan_id where d.hafta_kuni = {(int)dateTimePicker1.Value.DayOfWeek} and d.guruh = {int.Parse(comboBox1.SelectedItem.ToString().Replace(" ", "").Split("-")[0])};";
+                cmd = new NpgsqlCommand(sql, conn);
+                data = new DataTable();
+                data.Load(cmd.ExecuteReader());
+                conn.Close();
+                comboBox2.Items.Clear();
+                foreach (DataRow row in data.Rows) comboBox2.Items.Add(" " + row[0].ToString());
+                conn.Open();
+                sql = $@"select fio from talabalar where guruh = {int.Parse(comboBox1.SelectedItem.ToString().Replace(" ", "").Split("-")[0])}";
+                cmd = new NpgsqlCommand(sql, conn);
+                data = new DataTable();
+                data.Load(cmd.ExecuteReader());
+                conn.Close();
+                students.Clear();
+                foreach (DataRow row in data.Rows) students.Add(row[0].ToString());
             }
-            conn.Open();
-            sql = $@"select fio from talabalar where guruh = {int.Parse(comboBox1.SelectedItem.ToString().Replace(" ", "").Split("-")[0])}";
-            cmd = new NpgsqlCommand(sql, conn);
-            data = new DataTable();
-            data.Load(cmd.ExecuteReader());
-            conn.Close();
-            students.Clear();
-            foreach (DataRow row in data.Rows) students.Add(row[0].ToString());
         }
         void showStudents()
         {
@@ -95,7 +94,6 @@ namespace Davomat
             }
             pnlStudents.AutoScroll = true;
         }
-
         private void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             int raqam = 0;
@@ -105,14 +103,13 @@ namespace Davomat
             }
             lblSon.Text = raqam + " ta";
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
                 string ismlar = string.Empty;
                 for (int i = 0; i < davomat.Length; i++) if (davomat[i].Checked) ismlar += students[i] + ", ";
-                MessageBox.Show($"{dateTimePicker1.Value.ToString().Split()[0]} kuni {comboBox2.SelectedItem.ToString().Replace(" ", "")} fanida {comboBox1.SelectedItem.ToString().Replace(" ", "")} guruxidan {ismlar.Substring(0, ismlar.Length - 2)} yo'q.");
+                MessageBox.Show($"{dateTimePicker1.Value.ToString().Split()[0]} kuni {comboBox2.SelectedItem.ToString()} fanida {comboBox1.SelectedItem.ToString().Replace(" ", "")} guruxidan {ismlar.Substring(0, ismlar.Length - 2)} yo'q.");
                 for (int i = 0; i < davomat.Length; i++)
                 {
                     if (davomat[i].Checked)
@@ -136,12 +133,10 @@ namespace Davomat
                 showStudents();
             }
         }
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             showStudents();
         }
-
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             comboBox2.Items.Clear();

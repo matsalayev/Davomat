@@ -110,7 +110,7 @@
             comboBox1.Items.AddRange(new object[] { " 211-KIDT", " 212-KIDT" });
             comboBox1.Location = new Point(31, 98);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(945, 33);
+            comboBox1.Size = new Size(838, 33);
             comboBox1.TabIndex = 1;
             comboBox1.Text = "  Guruxni tanlang";
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
@@ -125,7 +125,7 @@
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(1153, 33);
             comboBox2.TabIndex = 2;
-            comboBox2.Text = "  Fanni tanlang";
+            comboBox2.Text = " Fanni tanlang";
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // panel2
@@ -231,14 +231,13 @@
             dateTimePicker1.CalendarFont = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePicker1.CalendarTitleBackColor = Color.LightBlue;
             dateTimePicker1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(982, 99);
+            dateTimePicker1.Location = new Point(875, 99);
             dateTimePicker1.MaxDate = new DateTime(2026, 12, 31, 0, 0, 0, 0);
             dateTimePicker1.MinDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(202, 31);
+            dateTimePicker1.Size = new Size(309, 31);
             dateTimePicker1.TabIndex = 4;
-            dateTimePicker1.Value = new DateTime(2023, 4, 25, 0, 0, 0, 0);
+            dateTimePicker1.Value = new DateTime(2023, 4, 26, 0, 0, 0, 0);
             dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // Form1
